@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  bookenstein_db:
+    image: postgres:16
+    hostname: bookenstein_db
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=app
+      - POSTGRES_DB=bookenstein
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+volumes:
+  db_data:
+
+networks:
+  mynetwork:
