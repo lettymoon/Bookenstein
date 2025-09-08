@@ -1,34 +1,42 @@
-using Bookenstein.API.Data;
+using Bookenstein.Application.Interfaces;
+using Bookenstein.Infrastructure.Persistence;
+using Bookenstein.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Controllers + Swagger
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-// AppDbContext
+// DbContext (PostgreSQL) – usa a connection string do appsettings.json
 builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-builder.Services.AddSwaggerGen();
+// DI dos repositórios/adapters
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Swagger apenas em DEV (ajuste se quiser em Prod)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
+// app.UseAuthentication(); // habilite quando tiver auth
+// app.UseAuthorization();
 
 app.MapControllers();
+
+// (Opcional) aplicar migrations no start – útil em DEV
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();

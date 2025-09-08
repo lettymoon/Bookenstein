@@ -1,0 +1,6 @@
+@Bookenstein.Infrastructure_HostAddress = http://localhost:5101
+
+GET {{Bookenstein.Infrastructure_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

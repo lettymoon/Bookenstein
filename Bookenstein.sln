@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36221.1 d17.14
+VisualStudioVersion = 17.14.36221.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookenstein.API", ".\Bookenstein.API\Bookenstein.API.csproj", "{728D4DD4-CD7C-4CB4-B3C6-C81260E8B170}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookenstein.API", "Bookenstein.API\Bookenstein.API.csproj", "{728D4DD4-CD7C-4CB4-B3C6-C81260E8B170}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookenstein.Infrastructure", "Bookenstein.Infrastructure\Bookenstein.Infrastructure.csproj", "{BD4EA2BF-7B02-42D1-9373-928DB7EC77AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookenstein.Domain", "Bookenstein.Domain\Bookenstein.Domain.csproj", "{D8A8A954-AFD0-4C40-9E06-9C6D38D09295}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookenstein.Application", "Bookenstein.Application\Bookenstein.Application.csproj", "{74534A8D-3B0D-44E9-BCA9-26B63CDA4CE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{728D4DD4-CD7C-4CB4-B3C6-C81260E8B170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{728D4DD4-CD7C-4CB4-B3C6-C81260E8B170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{728D4DD4-CD7C-4CB4-B3C6-C81260E8B170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4EA2BF-7B02-42D1-9373-928DB7EC77AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4EA2BF-7B02-42D1-9373-928DB7EC77AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4EA2BF-7B02-42D1-9373-928DB7EC77AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4EA2BF-7B02-42D1-9373-928DB7EC77AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A8A954-AFD0-4C40-9E06-9C6D38D09295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A8A954-AFD0-4C40-9E06-9C6D38D09295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A8A954-AFD0-4C40-9E06-9C6D38D09295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A8A954-AFD0-4C40-9E06-9C6D38D09295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74534A8D-3B0D-44E9-BCA9-26B63CDA4CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74534A8D-3B0D-44E9-BCA9-26B63CDA4CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74534A8D-3B0D-44E9-BCA9-26B63CDA4CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74534A8D-3B0D-44E9-BCA9-26B63CDA4CE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

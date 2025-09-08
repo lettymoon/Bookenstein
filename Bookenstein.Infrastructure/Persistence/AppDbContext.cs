@@ -1,13 +1,15 @@
-﻿namespace Bookenstein.API.Data;
+﻿namespace Bookenstein.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Bookenstein.API.Models.Entities;
+using Bookenstein.Domain.Entities;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 
 
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<User> Users => Set<User>();
+    public DbSet<Users> Users => Set<Users>();
 
 
     protected override void OnModelCreating(ModelBuilder model)
@@ -15,7 +17,7 @@ public class AppDbContext : DbContext
         base.OnModelCreating(model);
 
         // USER
-        model.Entity<User>(e =>
+        model.Entity<Users>(e =>
         {
             e.HasKey(x => x.Id);
             e.Property(x => x.Name).IsRequired().HasMaxLength(120);
@@ -31,3 +33,4 @@ public class AppDbContext : DbContext
 
     }
 }
+

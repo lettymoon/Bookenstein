@@ -1,0 +1,6 @@
+@Bookenstein.Domain_HostAddress = http://localhost:5036
+
+GET {{Bookenstein.Domain_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
