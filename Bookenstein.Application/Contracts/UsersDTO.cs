@@ -1,5 +1,9 @@
 ﻿namespace Bookenstein.Application.Contracts;
-public record UserResponse(Guid Id, string Name, string Username, string Email, string Role);
-
-public sealed record CreateUserRequest(string Name, string Username, string Email, string Role);
+public record UserResponse(
+    Guid Id, 
+    string Name, 
+    string Username, 
+    string Email, 
+    string Role
+);
 

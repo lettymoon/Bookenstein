@@ -1,23 +1,24 @@
-﻿namespace Bookenstein.Infrastructure.Persistence;
+﻿using Bookenstein.Domain.Entities;
+using Bookenstein.Infrastructure.Mappings;
 using Microsoft.EntityFrameworkCore;
-using Bookenstein.Domain.Entities;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
+namespace Bookenstein.Infrastructure.Persistence;
 
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
-    public DbSet<Users> Users => Set<Users>();
+    public DbSet<User> Users => Set<User>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
 
     protected override void OnModelCreating(ModelBuilder model)
     {
         base.OnModelCreating(model);
+        model.ApplyConfiguration(new UserMap());
+        model.ApplyConfiguration(new RefreshTokenMap());
 
         // USER
-        model.Entity<Users>(e =>
+        model.Entity<User>(e =>
         {
             e.HasKey(x => x.Id);
             e.Property(x => x.Name).IsRequired().HasMaxLength(120);

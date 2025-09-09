@@ -10,32 +10,20 @@ namespace Bookenstein.API.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly IUserRepository _repository;
+    private readonly IPasswordHasher _hasher;   
 
-    public UsersController(IUserRepository repository) => _repository = repository;
+    public UsersController(IUserRepository repository, IPasswordHasher hasher)
+        => (_repository, _hasher) = (repository, hasher);
 
-    [HttpPost]
-    public async Task<ActionResult<UserResponse>> Post([FromBody] CreateUserRequest request, CancellationToken ct)
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<UserResponse>>> GetAll(CancellationToken ct)
     {
-        var isUserExists = await _repository.GetByEmailAsync(request.Email, ct);
-        if (isUserExists is not null)
-            return Conflict(new { message = "E-mail já cadastrado." });
-
-        var user = new Users
-        {
-            Name = request.Name,
-            Username = request.Username,
-            Email = request.Email,
-            Role = request.Role
-        };
-
-        await _repository.AddAsync(user, ct);
-        await _repository.SaveChangesAsync(ct);
-
-        var response = new UserResponse(user.Id, user.Name, user.Username, user.Email, user.Role);
-        return CreatedAtAction(nameof(GetById), new { id = response.Id }, response);
+        var users = await _repository.GetAllAsync(ct);
+        var response = users.Select(u => new UserResponse(u.Id, u.Name, u.Username, u.Email, u.Role));
+        return Ok(response);
     }
 
-    [HttpGet("/{id:guid}")]
+    [HttpGet("{id:guid}")]
     public async Task<ActionResult<UserResponse>> GetById(Guid id, CancellationToken ct)
     {
         var user = await _repository.GetByIdAsync(id, ct);
